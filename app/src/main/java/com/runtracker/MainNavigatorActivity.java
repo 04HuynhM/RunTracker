@@ -36,16 +36,13 @@ public class MainNavigatorActivity extends AppCompatActivity {
         }
     };
 
-    private boolean loadFragment(Fragment fragment) {
+    private void loadFragment(Fragment fragment) {
         if (fragment!=null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.main_container, fragment)
                     .commit();
-
-            return true;
         }
-        return false;
     }
 
     @Override

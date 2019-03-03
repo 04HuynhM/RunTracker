@@ -15,7 +15,7 @@ import com.runtracker.R;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment {
-    
+
     public ProfileFragment() {
         // Required empty public constructor
     }
