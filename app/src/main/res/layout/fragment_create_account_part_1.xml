@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorBackgroundFloating"
+    android:elevation="3dp"
     tools:context=".Login.CreateAccount.CreateAccountPart1Fragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
