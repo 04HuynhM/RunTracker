@@ -68,6 +68,7 @@ public class CreateAccountPart1Fragment extends Fragment {
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.login_container, fragment)
+                .addToBackStack("account_setup")
                 .commit();
     }
 
