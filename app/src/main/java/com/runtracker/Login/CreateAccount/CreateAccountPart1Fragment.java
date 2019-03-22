@@ -90,8 +90,6 @@ public class CreateAccountPart1Fragment extends Fragment {
             return false;
         }
 
-        //TODO: Perform some check on email address to make sure it is unique (API CALL)
-
         return true;
     }
 }

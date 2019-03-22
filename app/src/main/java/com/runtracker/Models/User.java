@@ -1,40 +1,69 @@
 package com.runtracker.Models;
 
-import java.util.ArrayList;
-
 public class User {
-
-    private String user_id;
+    private String username;
     private String name;
     private String email;
     private String password;
+    private String profilePicture;
+    private boolean isAdmin;
     private int currentWeight;
     private int weightGoal;
     private int dailyStepGoal;
-    private ArrayList<Run> runs;
+    private int[] groupInvitations;
+    private int[] joinedGroups;
 
-    public User(String user_id, String name, String email, String password, int currentWeight, int weightGoal, int stepGoal) {
-        this.user_id = user_id;
+    public User(String username,
+                String name,
+                String email,
+                String password,
+                String profilePicture,
+                boolean isAdmin,
+                int currentWeight,
+                int weightGoal,
+                int stepGoal,
+                int[] groupInvitations,
+                int[] joinedGroups) {
+        this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
         this.currentWeight = currentWeight;
         this.weightGoal = weightGoal;
         this.dailyStepGoal = stepGoal;
+        this.groupInvitations = groupInvitations;
+        this.joinedGroups = joinedGroups;
+        this.profilePicture = profilePicture;
     }
 
-    public User(String user_id, String name, String email, String password, int currentWeight, int weightGoal, ArrayList<Run> runs) {
-        this.user_id = user_id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.currentWeight = currentWeight;
-        this.weightGoal = weightGoal;
-        this.runs = runs;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public int getDailyStepGoal() {
+        return dailyStepGoal;
+    }
+
+    public void setDailyStepGoal(int dailyStepGoal) {
+        this.dailyStepGoal = dailyStepGoal;
+    }
+
+
+    public String getUsername() {
+        return username;
     }
 
     public String getName() {
@@ -77,11 +106,19 @@ public class User {
         this.weightGoal = weightGoal;
     }
 
-    public ArrayList<Run> getRuns() {
-        return runs;
+    public int[] getGroupInvitations() {
+        return groupInvitations;
     }
 
-    public void setRuns(ArrayList<Run> runs) {
-        this.runs = runs;
+    public void setGroupInvitations(int[] groupInvitations) {
+        this.groupInvitations = groupInvitations;
+    }
+
+    public int[] getJoinedGroups() {
+        return joinedGroups;
+    }
+
+    public void setJoinedGroups(int[] joinedGroups) {
+        this.joinedGroups = joinedGroups;
     }
 }
