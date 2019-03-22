@@ -6,12 +6,12 @@ public class Run {
 
     private ArrayList<SingleLocation> locations;
     private String user_id;
-    private String startDate;
+    private String startTime;
 
-    public Run (String user_id, ArrayList<SingleLocation> locations, String startDate) {
+    public Run (String user_id, ArrayList<SingleLocation> locations, String startTime) {
         this.user_id = user_id;
         this.locations = locations;
-        this.startDate = startDate;
+        this.startTime = startTime;
     }
 
     public ArrayList<SingleLocation> getLocations() {
@@ -34,11 +34,11 @@ public class Run {
         locations.add(location);
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 }
