@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,11 +31,13 @@ import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button login;
-    TextView createAccount;
-    EditText email;
-    EditText password;
-    Context context;
+    private Button login;
+    private TextView createAccount;
+    private EditText email;
+    private EditText password;
+    private Context context;
+    private CheckBox rememberMe;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,20 @@ public class LoginActivity extends AppCompatActivity {
         createAccount = findViewById(R.id.login_button_create_account);
         email = findViewById(R.id.login_textfield_email);
         password = findViewById(R.id.login_textfield_password);
+        rememberMe = findViewById(R.id.remember_me_box);
 
-        email.setText("martin");
-        password.setText("password");
+        prefs = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        boolean rememberMeBool = prefs.getBoolean("rememberMe", false);
+
+        if (rememberMeBool) {
+            String usernameOrEmail = prefs.getString("usernameOrEmail", "");
+            String passwordString = prefs.getString("password", "");
+
+            email.setText(usernameOrEmail);
+            password.setText(passwordString);
+            rememberMe.setChecked(true);
+        }
 
         createAccount.setOnClickListener(view -> {
             CreateAccountPart1Fragment fragment = new CreateAccountPart1Fragment();
@@ -72,6 +86,18 @@ public class LoginActivity extends AppCompatActivity {
         ApiCalls api = new ApiCalls();
         String usernameOrEmail = email.getText().toString();
         String passwordString = password.getText().toString();
+
+        if (rememberMe.isChecked()) {
+            prefs.edit().putString("usernameOrEmail", usernameOrEmail)
+                    .putString("password", passwordString)
+                    .putBoolean("rememberMe", true)
+                    .apply();
+        } else {
+            prefs.edit().putBoolean("rememberMe", false)
+                    .remove("usernameOrEmail")
+                    .remove("password")
+                    .apply();
+        }
 
         JSONObject loginDetails = new JSONObject();
         loginDetails.put("usernameOrEmail", usernameOrEmail);

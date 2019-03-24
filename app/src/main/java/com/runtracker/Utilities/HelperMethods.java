@@ -24,6 +24,17 @@ public class HelperMethods {
         alert.show();
     }
 
+    public void createYesNoAlert(String message,
+                                 Context context,
+                                 DialogInterface.OnClickListener onClickListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message)
+                .setCancelable(true)
+                .setPositiveButton("Yes", onClickListener)
+                .setNegativeButton("No", onClickListener)
+                .show();
+    }
+
     public Map<String, Claim> verifyJwtAndGetClaims(String token) {
         JWT jwt = new JWT(token);
         return jwt.getClaims();

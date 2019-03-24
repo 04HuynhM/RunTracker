@@ -12,17 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.runtracker.MainNavigatorActivity;
+import com.runtracker.MenuFragments.RunTracking.RunTrackerFragment;
 import com.runtracker.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrackRunMenuFragment extends Fragment {
+public class RunsFragment extends Fragment {
 
     private Button startRunButton;
 
-    public TrackRunMenuFragment() {
+    public RunsFragment() {
         // Required empty public constructor
     }
 
