@@ -5,29 +5,29 @@ import java.util.Date;
 
 public class SingleLocation {
 
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
     private String timestamp;
 
-    public SingleLocation(Long latitude, Long longitude) {
+    public SingleLocation(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.timestamp = createTimestamp();
     }
 
-    public Long getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Long latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public Long getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Long longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

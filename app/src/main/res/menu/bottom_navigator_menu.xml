@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/bottom_navigator_profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_person_black_24dp" />
     <item android:id="@+id/bottom_navigator_run_tracker"
         android:title="Run Tracker"
         android:icon="@drawable/ic_directions_run_black_24dp" />
+    <item android:id="@+id/bottom_navigator_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_person_black_24dp" />
     <item android:id="@+id/bottom_navigator_settings"
         android:title="Settings"
         android:icon="@drawable/ic_settings_black_24dp" />

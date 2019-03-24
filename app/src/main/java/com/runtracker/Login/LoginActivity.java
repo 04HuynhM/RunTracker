@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.auth0.android.jwt.JWT;
 import com.runtracker.Login.CreateAccount.CreateAccountPart1Fragment;
 import com.runtracker.MainNavigatorActivity;
 import com.runtracker.Network.ApiCalls;
@@ -24,6 +25,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,6 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         createAccount = findViewById(R.id.login_button_create_account);
         email = findViewById(R.id.login_textfield_email);
         password = findViewById(R.id.login_textfield_password);
+
+        email.setText("martin");
+        password.setText("password");
 
         createAccount.setOnClickListener(view -> {
             CreateAccountPart1Fragment fragment = new CreateAccountPart1Fragment();
@@ -83,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     SharedPreferences prefs = getSharedPreferences("preferences", Context.MODE_PRIVATE);
                     String responseString = response.body().string();
-
                     try {
                         JSONObject jsonObject = new JSONObject(responseString);
                         String authToken = jsonObject.getString("token");

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,8 +34,10 @@
             android:focusable="true"
             android:scaleType="centerCrop"
             android:src="@drawable/man"
-            app:civ_border_color="#FFFFFFFF"
+            android:visibility="invisible"
+            app:civ_border_color="#000000"
             app:civ_border_width="3dp"
+            app:civ_circle_background_color="#ffffff"
             app:layout_constraintStart_toStartOf="parent" />
 
         <RelativeLayout
@@ -46,6 +49,18 @@
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
+
+            <TextView
+                android:id="@+id/completed_runs_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/completed_runs_title"
+                android:layout_alignBottom="@+id/completed_runs_title"
+                android:layout_marginStart="16dp"
+                android:layout_toRightOf="@+id/completed_runs_title"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                tools:text="150" />
 
             <ImageView
                 android:id="@+id/edit_profile_imageview"
@@ -74,40 +89,181 @@
                 tools:text="FirstName LastName" />
 
             <TextView
-                android:id="@+id/profile_location"
+                android:id="@+id/completed_runs_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_name"
                 android:layout_centerHorizontal="false"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
+                android:text="Completed Runs:"
                 android:textColor="#fff"
-                android:textSize="16sp"
-                tools:text="Location" />
+                android:textSize="16sp" />
 
         </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_relative_layout"
-            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:background="#fff"
             android:elevation="4dp"
             android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp">
+            android:paddingBottom="8dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/profile_card_recyclerview"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/weight_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/weight_constraint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/weight_goal_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="16dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Weight Goal (kg)"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toBottomOf="@+id/current_weight_title" />
+
+                    <TextView
+                        android:id="@+id/current_weight_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/weight_goal_title"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="16dp"
+                        android:layout_marginStart="16dp"
+                        android:text="Current Weight (kg)"
+                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/current_weight_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/weight_goal_value"
+                        app:layout_constraintTop_toTopOf="@+id/current_weight_title"
+                        tools:text="80" />
+
+                    <TextView
+                        android:id="@+id/weight_goal_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="240dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/weight_goal_title"
+                        tools:text="80" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_weighing_weight_svgrepo_com" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/steps_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/weight_cardview">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/step_goal_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_marginStart="8dp"
+                        android:text="Daily Step Goal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/average_steps_title" />
+
+                    <TextView
+                        android:id="@+id/average_steps_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Average Daily Steps"
+                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/average_steps_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/step_goal_value"
+                        app:layout_constraintTop_toTopOf="@+id/average_steps_title"
+                        tools:text="7500" />
+
+                    <TextView
+                        android:id="@+id/step_goal_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="240dp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/step_goal_title"
+                        tools:text="10000" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:tint="@color/colorPrimary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_directions_walk_black_24dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
 </ScrollView>

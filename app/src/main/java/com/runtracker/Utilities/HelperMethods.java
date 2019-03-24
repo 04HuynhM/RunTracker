@@ -4,6 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+
+import java.util.Map;
+
 public class HelperMethods {
 
     public void createOkayAlert(String message, Context context) {
@@ -13,13 +18,14 @@ public class HelperMethods {
 
         builder.setPositiveButton(
                 "Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
+                (dialog, id) -> dialog.cancel());
 
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public Map<String, Claim> verifyJwtAndGetClaims(String token) {
+        JWT jwt = new JWT(token);
+        return jwt.getClaims();
     }
 }
