@@ -1,7 +1,6 @@
 package com.runtracker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,30 +11,35 @@ import com.runtracker.Login.LoginActivity;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LaunchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkIfLoggedIn();
-    }
-
-    private void checkIfLoggedIn() {
         SharedPreferences prefs = getSharedPreferences("preferences", MODE_PRIVATE);
         String authToken = prefs.getString("authToken", "");
 
-        if(!authToken.equals("")) {
+        if (!authToken.equals("")) {
             JWT jwt = new JWT(authToken);
             Date expiresAt = jwt.getExpiresAt();
             if (Calendar.getInstance().getTime().before(expiresAt)) {
                 Intent intent = new Intent(this, MainNavigatorActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
             }
+        } else {
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
     }
 }

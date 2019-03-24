@@ -9,12 +9,14 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="159dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="@+id/login_textfield_password"
-        app:layout_constraintTop_toBottomOf="@+id/login_textfield_password" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/login_textfield_password"
+        app:layout_constraintTop_toBottomOf="@+id/remember_me_box" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -52,12 +54,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Username/Email"
+        android:importantForAutofill="no"
         android:inputType="textWebEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_heading"
-        android:importantForAutofill="no" tools:targetApi="o"/>
+        tools:targetApi="o" />
 
     <EditText
         android:id="@+id/login_textfield_password"
@@ -101,5 +104,18 @@
         app:layout_constraintBottom_toTopOf="@+id/login_button_create_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/remember_me_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@color/colorPrimary"
+        android:text="Remember me"
+        android:textAlignment="textStart"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/login_textfield_password"
+        app:layout_constraintStart_toStartOf="@+id/login_textfield_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_textfield_password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

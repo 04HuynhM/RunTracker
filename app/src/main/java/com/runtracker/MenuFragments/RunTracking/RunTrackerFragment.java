@@ -1,8 +1,9 @@
-package com.runtracker.MenuFragments;
+package com.runtracker.MenuFragments.RunTracking;
 
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -38,6 +39,7 @@ import com.runtracker.Models.SingleLocation;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
 import com.runtracker.Utilities.Constants;
+import com.runtracker.Utilities.HelperMethods;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,12 +69,8 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
     private Context context;
 
     private MapView mapView;
-    private TextView distanceValue;
     private TextView timeValue;
-    private Button completeButton;
     private GoogleMap googleMap;
-    private Timer timer;
-    private TimerTask timerTask;
 
     private int seconds;
     private boolean running;
@@ -88,6 +86,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         // Required empty public constructor
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new Dialog(getActivity(), getTheme()){
@@ -116,12 +115,34 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
 
         View v = inflater.inflate(R.layout.fragment_run_tracker, container, false);
 
-        distanceValue = v.findViewById(R.id.run_distance_value);
         timeValue = v.findViewById(R.id.run_time_value);
-        completeButton = v.findViewById(R.id.complete_run);
-
+        Button completeButton = v.findViewById(R.id.complete_run);
+        Button cancelButton = v.findViewById(R.id.cancel_run_button);
         locations = new ArrayList<>();
         Run run = startRun();
+
+        cancelButton.setOnClickListener(view -> {
+            HelperMethods helperMethods = new HelperMethods();
+
+//            DialogInterface.OnClickListener onClickListener = (dialogInterface, choice) -> {
+//                switch (choice) {
+//                    case DialogInterface.BUTTON_POSITIVE :
+//                        running = false;
+//                        stopLocationUpdates();
+//                        mapView.onPause();
+//                        dialogInterface.dismiss();
+//                        dismiss();
+//                        break;
+//                    case DialogInterface.BUTTON_NEGATIVE:
+//                        dialogInterface.cancel();
+//                        break;
+//                }
+//            };
+//
+//            helperMethods.createYesNoAlert("Are you sure you want to cancel this run?",
+//                                            context,
+//                                            onClickListener);
+        });
 
         completeButton.setOnClickListener(view -> {
             running = false;
