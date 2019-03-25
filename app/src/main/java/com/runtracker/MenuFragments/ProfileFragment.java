@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        name = view.findViewById(R.id.user_name);
+        name = view.findViewById(R.id.profile_name);
         profilePicture = view.findViewById(R.id.profile_circle_imageview);
         backgroundPicture = view.findViewById(R.id.profile_header_image);
         completedRuns = view.findViewById(R.id.completed_runs_value);
