@@ -1,4 +1,4 @@
-package com.runtracker.MenuFragments.RunTracking;
+package com.runtracker.Fragments.RunTracking;
 
 import android.Manifest;
 import android.app.Dialog;

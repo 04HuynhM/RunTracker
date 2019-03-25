@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.runtracker.MenuFragments.RunTracking.RunTrackerFragment;
+import com.runtracker.Fragments.RunTracking.RunTrackerFragment;
 import com.runtracker.R;
 
 /**
