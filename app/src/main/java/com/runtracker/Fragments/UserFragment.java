@@ -1,4 +1,4 @@
-package com.runtracker.MenuFragments;
+package com.runtracker.Fragments;
 
 
 import android.content.Context;
@@ -32,7 +32,7 @@ import java.io.IOException;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment {
+public class UserFragment extends Fragment {
 
     private TextView name;
     private CircleImageView profilePicture;
@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment {
     private TextView averageDailySteps;
     private TextView dailyStepGoal;
 
-    public ProfileFragment() {
+    public UserFragment() {
         // Required empty public constructor
     }
 
@@ -54,18 +54,21 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         name = view.findViewById(R.id.user_name);
-        profilePicture = view.findViewById(R.id.profile_circle_imageview);
-        backgroundPicture = view.findViewById(R.id.profile_header_image);
-        completedRuns = view.findViewById(R.id.completed_runs_value);
-        currentWeight = view.findViewById(R.id.current_weight_value);
-        weightGoal = view.findViewById(R.id.weight_goal_value);
-        dailyStepGoal = view.findViewById(R.id.step_goal_value);
-        averageDailySteps = view.findViewById(R.id.average_steps_value);
+        profilePicture = view.findViewById(R.id.user_circle_imageview);
+        backgroundPicture = view.findViewById(R.id.user_header_image);
+        completedRuns = view.findViewById(R.id.user_completed_runs_value);
+        currentWeight = view.findViewById(R.id.user_current_weight_value);
+        weightGoal = view.findViewById(R.id.user_weight_goal_value);
+        dailyStepGoal = view.findViewById(R.id.user_step_goal_value);
+        averageDailySteps = view.findViewById(R.id.user_average_steps_value);
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-
-        JWT jwt = new JWT(prefs.getString("authToken", ""));
-        String username = jwt.getClaim("username").asString();
+        String username;
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            username = bundle.getString("username");
+        } else {
+            username = "";
+        }
 
         ApiCalls api = new ApiCalls();
         String url = Constants.BASE_URL + "user/" + username;
@@ -106,5 +109,4 @@ public class ProfileFragment extends Fragment {
         });
         return view;
     }
-
 }

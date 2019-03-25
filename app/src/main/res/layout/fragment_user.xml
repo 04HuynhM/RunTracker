@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/profile_header_image"
+            android:id="@+id/user_header_image"
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:clickable="true"
@@ -23,7 +23,7 @@
             tools:ignore='contentDescription' />
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_circle_imageview"
+            android:id="@+id/user_circle_imageview"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_alignParentTop="true"
@@ -41,29 +41,28 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <RelativeLayout
-            android:id="@+id/profile_relative_layout"
+            android:id="@+id/user_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_header_image"
+            android:layout_below="@+id/user_header_image"
             android:background="@android:color/darker_gray"
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
-
             <TextView
-                android:id="@+id/completed_runs_value"
+                android:id="@+id/user_completed_runs_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/completed_runs_title"
-                android:layout_alignBottom="@+id/completed_runs_title"
+                android:layout_alignTop="@+id/user_completed_runs_title"
+                android:layout_alignBottom="@+id/user_completed_runs_title"
                 android:layout_marginStart="16dp"
-                android:layout_toRightOf="@+id/completed_runs_title"
+                android:layout_toEndOf="@+id/user_completed_runs_title"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 tools:text="150" />
 
             <ImageView
-                android:id="@+id/edit_profile_imageview"
+                android:id="@+id/edit_user_imageview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -77,7 +76,7 @@
                 tools:ignore='contentDescription' />
 
             <TextView
-                android:id="@+id/profile_name"
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="false"
@@ -89,7 +88,7 @@
                 tools:text="FirstName LastName" />
 
             <TextView
-                android:id="@+id/completed_runs_title"
+                android:id="@+id/user_completed_runs_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_name"
@@ -103,10 +102,10 @@
         </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/user_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_relative_layout"
+            android:layout_below="@+id/user_relative_layout"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -117,7 +116,7 @@
             android:paddingBottom="8dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/weight_cardview"
+                android:id="@+id/user_weight_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -129,12 +128,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/weight_constraint"
+                    android:id="@+id/user_weight_constraint"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/weight_goal_title"
+                        android:id="@+id/user_weight_goal_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
@@ -142,42 +141,42 @@
                         android:layout_marginStart="16dp"
                         android:text="Weight Goal (kg)"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView5"
-                        app:layout_constraintTop_toBottomOf="@+id/current_weight_title" />
+                        app:layout_constraintStart_toEndOf="@+id/user_imageView5"
+                        app:layout_constraintTop_toBottomOf="@+id/user_current_weight_title" />
 
                     <TextView
-                        android:id="@+id/current_weight_title"
+                        android:id="@+id/user_current_weight_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/weight_goal_title"
+                        android:layout_below="@+id/user_weight_goal_title"
                         android:layout_alignParentBottom="true"
                         android:layout_margin="16dp"
                         android:layout_marginStart="16dp"
                         android:text="Current Weight (kg)"
-                        app:layout_constraintStart_toEndOf="@+id/imageView5"
+                        app:layout_constraintStart_toEndOf="@+id/user_imageView5"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/current_weight_value"
+                        android:id="@+id/user_current_weight_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/weight_goal_value"
-                        app:layout_constraintTop_toTopOf="@+id/current_weight_title"
+                        app:layout_constraintStart_toStartOf="@+id/user_weight_goal_value"
+                        app:layout_constraintTop_toTopOf="@+id/user_current_weight_title"
                         tools:text="80" />
 
                     <TextView
-                        android:id="@+id/weight_goal_value"
+                        android:id="@+id/user_weight_goal_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="240dp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/weight_goal_title"
+                        app:layout_constraintTop_toTopOf="@+id/user_weight_goal_title"
                         tools:text="80" />
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/user_imageView5"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginStart="16dp"
@@ -193,7 +192,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/steps_cardview"
+                android:id="@+id/user_steps_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -202,54 +201,54 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weight_cardview">
+                app:layout_constraintTop_toBottomOf="@+id/user_weight_cardview">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/step_goal_title"
+                        android:id="@+id/user_step_goal_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:layout_marginStart="8dp"
                         android:text="Daily Step Goal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
-                        app:layout_constraintTop_toBottomOf="@+id/average_steps_title" />
+                        app:layout_constraintStart_toEndOf="@+id/user_imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/user_average_steps_title" />
 
                     <TextView
-                        android:id="@+id/average_steps_title"
+                        android:id="@+id/user_average_steps_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:text="Average Daily Steps"
-                        app:layout_constraintStart_toEndOf="@+id/imageView4"
+                        app:layout_constraintStart_toEndOf="@+id/user_imageView4"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/average_steps_value"
+                        android:id="@+id/user_average_steps_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/step_goal_value"
-                        app:layout_constraintTop_toTopOf="@+id/average_steps_title"
+                        app:layout_constraintStart_toStartOf="@+id/user_step_goal_value"
+                        app:layout_constraintTop_toTopOf="@+id/user_average_steps_title"
                         tools:text="7500" />
 
                     <TextView
-                        android:id="@+id/step_goal_value"
+                        android:id="@+id/user_step_goal_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="240dp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/step_goal_title"
+                        app:layout_constraintTop_toTopOf="@+id/user_step_goal_title"
                         tools:text="10000" />
 
                     <ImageView
-                        android:id="@+id/imageView4"
+                        android:id="@+id/user_imageView4"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginStart="16dp"
