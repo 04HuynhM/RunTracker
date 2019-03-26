@@ -1,8 +1,9 @@
-package com.runtracker.MenuFragments;
+package com.runtracker.Fragments.MenuFragments;
 
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -12,32 +13,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.runtracker.Fragments.RunTracking.MyRunsFragment;
 import com.runtracker.Fragments.RunTracking.RunTrackerFragment;
 import com.runtracker.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RunsFragment extends Fragment {
+public class RunsMenuFragment extends Fragment {
 
     private Button startRunButton;
+    private ConstraintLayout myRuns;
 
-    public RunsFragment() {
+    public RunsMenuFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_track_run_menu, container, false);
+
+        myRuns = v.findViewById(R.id.my_runs_container);
+        myRuns.setOnClickListener(view -> {
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.addToBackStack("myRuns");
+            ft.replace(R.id.main_container, new MyRunsFragment());
+            ft.commit();
+        });
 
         startRunButton = v.findViewById(R.id.start_run_button);
 
         startRunButton.setOnClickListener(view -> {
             showRunTracker();
-
         });
 
         return v;

@@ -70,6 +70,17 @@ public class ApiCalls {
         return call;
     }
 
+    public Call delete(String url, String authToken, Callback callback) {
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Authorization", authToken)
+                .delete()
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(callback);
+        return call;
+    }
+
     public Call postImage(String url,
                    File image,
                    String authToken,

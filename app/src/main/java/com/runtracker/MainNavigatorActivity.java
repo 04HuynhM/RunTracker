@@ -10,9 +10,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.runtracker.Login.LoginActivity;
-import com.runtracker.MenuFragments.ProfileFragment;
-import com.runtracker.MenuFragments.SettingsFragment;
-import com.runtracker.MenuFragments.RunsFragment;
+import com.runtracker.Fragments.MenuFragments.GroupsFragment;
+import com.runtracker.Fragments.MenuFragments.ProfileFragment;
+import com.runtracker.Fragments.MenuFragments.RunsMenuFragment;
+import com.runtracker.Fragments.MenuFragments.SearchFragment;
 import com.runtracker.Utilities.HelperMethods;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,20 +22,23 @@ import androidx.fragment.app.Fragment;
 public class MainNavigatorActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = item -> {
-                switch (item.getItemId()) {
-                    case R.id.bottom_navigator_profile:
-                        loadFragment(new ProfileFragment());
-                        return true;
-                    case R.id.bottom_navigator_run_tracker:
-                        loadFragment(new RunsFragment());
-                        return true;
-                    case R.id.bottom_navigator_settings:
-                        loadFragment(new SettingsFragment());
-                        return true;
-                }
-                return false;
-            };
+        = item -> {
+            switch (item.getItemId()) {
+                case R.id.bottom_navigator_profile:
+                    loadFragment(new ProfileFragment());
+                    return true;
+                case R.id.bottom_navigator_run_tracker:
+                    loadFragment(new RunsMenuFragment());
+                    return true;
+                case R.id.bottom_navigator_search:
+                    loadFragment(new SearchFragment());
+                    return true;
+                case R.id.bottom_navigator_groups:
+                    loadFragment(new GroupsFragment());
+                    return true;
+            }
+            return false;
+        };
 
     private void loadFragment(Fragment fragment) {
         if (fragment!=null) {
@@ -53,7 +57,7 @@ public class MainNavigatorActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.main_navigator);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment(new RunsFragment());
+        loadFragment(new RunsMenuFragment());
     }
 
     @Override

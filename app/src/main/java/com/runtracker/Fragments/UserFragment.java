@@ -37,7 +37,7 @@ public class UserFragment extends Fragment {
     private TextView name;
     private CircleImageView profilePicture;
     private ImageView backgroundPicture;
-    private TextView completedRuns;
+    private TextView usernameTextView;
     private TextView currentWeight;
     private TextView weightGoal;
     private TextView averageDailySteps;
@@ -51,12 +51,12 @@ public class UserFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_user, container, false);
 
         name = view.findViewById(R.id.user_name);
         profilePicture = view.findViewById(R.id.user_circle_imageview);
         backgroundPicture = view.findViewById(R.id.user_header_image);
-        completedRuns = view.findViewById(R.id.user_completed_runs_value);
+        usernameTextView = view.findViewById(R.id.user_username_value);
         currentWeight = view.findViewById(R.id.user_current_weight_value);
         weightGoal = view.findViewById(R.id.user_weight_goal_value);
         dailyStepGoal = view.findViewById(R.id.user_step_goal_value);
@@ -84,6 +84,7 @@ public class UserFragment extends Fragment {
                     getActivity().runOnUiThread(() -> {
                         try {
                             JSONObject jsonBody = new JSONObject(response.body().string());
+                            usernameTextView.setText(jsonBody.getString("username"));
                             name.setText(jsonBody.getString("name"));
                             currentWeight.setText(jsonBody.getString("currentWeight"));
                             weightGoal.setText(jsonBody.getString("weightGoal"));

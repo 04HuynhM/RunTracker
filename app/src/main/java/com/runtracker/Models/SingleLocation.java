@@ -1,9 +1,10 @@
 package com.runtracker.Models;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class SingleLocation {
+public class SingleLocation implements Serializable {
 
     private Double latitude;
     private Double longitude;

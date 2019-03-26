@@ -10,7 +10,7 @@
         android:id="@+id/admin_row_button"
         android:layout_width="0dp"
         android:layout_height="76dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,22 +102,26 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Group Name" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/single_group_members_recyclerview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toBottomOf="@+id/group_members_textview" />
+
+    <TextView
+        android:id="@+id/group_members_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Members"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_row_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

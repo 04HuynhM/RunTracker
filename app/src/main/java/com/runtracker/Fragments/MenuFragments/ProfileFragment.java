@@ -1,4 +1,4 @@
-package com.runtracker.MenuFragments;
+package com.runtracker.Fragments.MenuFragments;
 
 
 import android.content.Context;
@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment {
     private TextView name;
     private CircleImageView profilePicture;
     private ImageView backgroundPicture;
-    private TextView completedRuns;
+    private TextView usernameTextView;
     private TextView currentWeight;
     private TextView weightGoal;
     private TextView averageDailySteps;
@@ -56,7 +56,7 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.profile_name);
         profilePicture = view.findViewById(R.id.profile_circle_imageview);
         backgroundPicture = view.findViewById(R.id.profile_header_image);
-        completedRuns = view.findViewById(R.id.completed_runs_value);
+        usernameTextView = view.findViewById(R.id.profile_username_value);
         currentWeight = view.findViewById(R.id.current_weight_value);
         weightGoal = view.findViewById(R.id.weight_goal_value);
         dailyStepGoal = view.findViewById(R.id.step_goal_value);
@@ -81,6 +81,7 @@ public class ProfileFragment extends Fragment {
                     getActivity().runOnUiThread(() -> {
                         try {
                             JSONObject jsonBody = new JSONObject(response.body().string());
+                            usernameTextView.setText(jsonBody.getString("username"));
                             name.setText(jsonBody.getString("name"));
                             currentWeight.setText(jsonBody.getString("currentWeight"));
                             weightGoal.setText(jsonBody.getString("weightGoal"));
