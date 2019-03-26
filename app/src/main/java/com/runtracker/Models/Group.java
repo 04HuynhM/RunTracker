@@ -4,9 +4,9 @@ public class Group {
     private int group_id;
     private String admin;
     private String groupName;
-    private int[] members;
+    private String[] members;
 
-    public Group(int group_id, String admin, String groupName, int[] members) {
+    public Group(int group_id, String groupName, String[] members, String admin) {
         this.group_id = group_id;
         this.admin = admin;
         this.groupName = groupName;
@@ -29,11 +29,11 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public int[] getMembers() {
+    public String[] getMembers() {
         return members;
     }
 
-    public void setMembers(int[] members) {
+    public void setMembers(String[] members) {
         this.members = members;
     }
 }

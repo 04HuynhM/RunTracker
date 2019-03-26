@@ -51,14 +51,15 @@
 
 
             <TextView
-                android:id="@+id/completed_runs_value"
+                android:id="@+id/profile_username_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/completed_runs_title"
-                android:layout_alignBottom="@+id/completed_runs_title"
+                android:layout_alignTop="@+id/profile_username_title"
+                android:layout_alignBottom="@+id/profile_username_title"
                 android:layout_marginStart="16dp"
-                android:layout_toRightOf="@+id/completed_runs_title"
+                android:layout_toRightOf="@+id/profile_username_title"
                 android:textColor="#fff"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="150" />
 
@@ -89,14 +90,14 @@
                 tools:text="FirstName LastName" />
 
             <TextView
-                android:id="@+id/completed_runs_title"
+                android:id="@+id/profile_username_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profile_name"
                 android:layout_centerHorizontal="false"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:text="Completed Runs:"
+                android:text="Username:"
                 android:textColor="#fff"
                 android:textSize="16sp" />
 

@@ -3,7 +3,6 @@ package com.runtracker.Fragments.RunTracking;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -32,8 +31,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.runtracker.Models.Run;
 import com.runtracker.Models.SingleLocation;
 import com.runtracker.Network.ApiCalls;
@@ -49,10 +46,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -156,14 +150,14 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                if (locationResult == null) {
-                    return;
-                }
-                for (Location location : locationResult.getLocations()) {
-                    SingleLocation newLocation = new SingleLocation(location.getLatitude(),
-                                                                    location.getLongitude());
-                    locations.add(newLocation);
-                }
+            if (locationResult == null) {
+                return;
+            }
+            for (Location location : locationResult.getLocations()) {
+                SingleLocation newLocation = new SingleLocation(location.getLatitude(),
+                                                                location.getLongitude());
+                locations.add(newLocation);
+            }
             }
         };
         running = true;
@@ -303,7 +297,6 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
                 jsonLocation.put("latitude", location.getLatitude());
                 jsonLocation.put("longitude", location.getLongitude());
                 jsonLocation.put("timestamp", location.getTimestamp());
-
                 jsonLocationArray.put(jsonLocation);
             }
         } catch (JSONException e) {
@@ -325,7 +318,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
             jsonBody.put("username", username);
             jsonBody.put("locations", jsonLocationArray);
             jsonBody.put("startTime", run.getStartTime());
-            jsonBody.put("duration", run.getTimeInSeconds());
+            jsonBody.put("timeInSeconds", run.getTimeInSeconds());
 
             String url = Constants.BASE_URL + "run";
 

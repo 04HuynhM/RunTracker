@@ -9,7 +9,7 @@
     <item android:id="@+id/bottom_navigator_profile"
         android:title="Profile"
         android:icon="@drawable/ic_person_black_24dp" />
-    <item android:id="@+id/bottom_navigator_settings"
-        android:title="Settings"
-        android:icon="@drawable/ic_settings_black_24dp" />
+    <item android:id="@+id/bottom_navigator_search"
+        android:title="Search"
+        android:icon="@drawable/ic_search_black_24dp" />
 </menu>
