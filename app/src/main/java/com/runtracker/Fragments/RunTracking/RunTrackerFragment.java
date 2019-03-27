@@ -3,6 +3,7 @@ package com.runtracker.Fragments.RunTracking;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
@@ -118,24 +119,24 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         cancelButton.setOnClickListener(view -> {
             HelperMethods helperMethods = new HelperMethods();
 
-//            DialogInterface.OnClickListener onClickListener = (dialogInterface, choice) -> {
-//                switch (choice) {
-//                    case DialogInterface.BUTTON_POSITIVE :
-//                        running = false;
-//                        stopLocationUpdates();
-//                        mapView.onPause();
-//                        dialogInterface.dismiss();
-//                        dismiss();
-//                        break;
-//                    case DialogInterface.BUTTON_NEGATIVE:
-//                        dialogInterface.cancel();
-//                        break;
-//                }
-//            };
-//
-//            helperMethods.createYesNoAlert("Are you sure you want to cancel this run?",
-//                                            context,
-//                                            onClickListener);
+            DialogInterface.OnClickListener onClickListener = (dialogInterface, choice) -> {
+                switch (choice) {
+                    case DialogInterface.BUTTON_POSITIVE :
+                        running = false;
+                        stopLocationUpdates();
+                        mapView.onPause();
+                        dialogInterface.dismiss();
+                        dismiss();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialogInterface.cancel();
+                        break;
+                }
+            };
+
+            helperMethods.createYesNoAlert("Are you sure you want to cancel this run?",
+                                            context,
+                                            onClickListener);
         });
 
         completeButton.setOnClickListener(view -> {
