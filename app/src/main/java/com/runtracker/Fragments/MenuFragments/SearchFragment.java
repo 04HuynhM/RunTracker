@@ -2,17 +2,6 @@ package com.runtracker.Fragments.MenuFragments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +17,20 @@ import com.runtracker.Models.Group;
 import com.runtracker.Models.User;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,9 +62,8 @@ public class SearchFragment extends Fragment {
 
         searchButton.setOnClickListener(view -> {
 
-            String authToken = getActivity()
-                    .getSharedPreferences("preferences", Context.MODE_PRIVATE)
-                    .getString("authToken", "");
+            AuthUtil authUtil = new AuthUtil(getActivity());
+            String authToken = authUtil.getAuthToken();
 
             if (!searchField.getText().toString().isEmpty()) {
                 String query = searchField.getText().toString();

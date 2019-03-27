@@ -5,15 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -30,9 +21,18 @@ import com.runtracker.Adapters.GroupsInviteAdapter;
 import com.runtracker.Models.Group;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 
 import java.io.IOException;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -95,12 +95,9 @@ public class GroupInviteSelectionFragment extends DialogFragment {
 
     private void callApiForGroups(String invitedUser) {
         ApiCalls api = new ApiCalls();
-
-        SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String authToken = prefs.getString("authToken", "");
-
-        JWT jwt = new JWT(authToken);
-        String username = jwt.getClaim("username").asString();
+        AuthUtil authUtil = new AuthUtil(getActivity());
+        String authToken = authUtil.getAuthToken();
+        String username = authUtil.getCurrentUser();
 
         String url = Constants.BASE_URL + "group/user/" + username;
         api.protectedGet(url, "Bearer " + authToken, new Callback() {
