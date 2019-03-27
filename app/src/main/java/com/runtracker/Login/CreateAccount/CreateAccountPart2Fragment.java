@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.runtracker.MainNavigatorActivity;
 import com.runtracker.Models.User;
 import com.runtracker.Network.ApiCalls;

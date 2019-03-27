@@ -36,6 +36,7 @@ import com.runtracker.Models.Run;
 import com.runtracker.Models.SingleLocation;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 import com.runtracker.Utilities.HelperMethods;
 
@@ -308,10 +309,9 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
 
         ApiCalls api = new ApiCalls();
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String rawToken = prefs.getString("authToken", "");
-        JWT jwt = new JWT(rawToken);
-        String username = jwt.getClaim("username").asString();
+        AuthUtil authUtil = new AuthUtil(getActivity());
+        String rawToken = authUtil.getAuthToken();
+        String username = authUtil.getCurrentUser();
         String bearerToken = "Bearer " + rawToken;
 
         try {

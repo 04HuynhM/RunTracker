@@ -5,7 +5,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,9 +52,8 @@ public class MyInvitesListAdapter extends RecyclerView.Adapter<MyInvitesListAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Group group = groups[position];
-
         holder.groupName.setText(group.getGroupName());
-        holder.membersCount.setText(group.getMembers().length);
+        holder.membersCount.setText(String.valueOf(group.getMembers().length));
         holder.acceptInvite.setOnClickListener(view -> {
             try {
                 respondToInvite("accept", group.getGroup_id());
@@ -128,13 +127,13 @@ public class MyInvitesListAdapter extends RecyclerView.Adapter<MyInvitesListAdap
 
         TextView groupName;
         TextView membersCount;
-        Button acceptInvite;
-        Button declineInvite;
+        ImageView acceptInvite;
+        ImageView declineInvite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             groupName = itemView.findViewById(R.id.group_invite_name);
-            membersCount = itemView.findViewById(R.id.group_row_number_members);
+            membersCount = itemView.findViewById(R.id.group_invite_member_count_value);
             acceptInvite = itemView.findViewById(R.id.group_accept_invite_button);
             declineInvite = itemView.findViewById(R.id.group_decline_invite);
         }

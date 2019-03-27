@@ -4,13 +4,6 @@ package com.runtracker.Fragments.MenuFragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +15,19 @@ import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+
+import androidx.fragment.app.Fragment;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,10 +62,8 @@ public class ProfileFragment extends Fragment {
         dailyStepGoal = view.findViewById(R.id.step_goal_value);
         averageDailySteps = view.findViewById(R.id.average_steps_value);
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-
-        JWT jwt = new JWT(prefs.getString("authToken", ""));
-        String username = jwt.getClaim("username").asString();
+        AuthUtil authUtil = new AuthUtil(getActivity());
+        String username = authUtil.getCurrentUser();
 
         ApiCalls api = new ApiCalls();
         String url = Constants.BASE_URL + "user/" + username;

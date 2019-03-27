@@ -1,9 +1,6 @@
 package com.runtracker.Login.CreateAccount;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,8 @@ import android.widget.EditText;
 
 import com.runtracker.R;
 import com.runtracker.Utilities.HelperMethods;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,12 +40,7 @@ public class CreateAccountPart1Fragment extends Fragment {
         confirmPassword = view.findViewById(R.id.create_account_confirm_password);
         Button continueButton = view.findViewById(R.id.create_account_button_continue);
 
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                performContinue();
-            }
-        });
+        continueButton.setOnClickListener(view1 -> performContinue());
 
         return view;
     }

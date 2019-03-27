@@ -14,6 +14,7 @@ import com.runtracker.MainNavigatorActivity;
 import com.runtracker.Models.Group;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 
 import org.json.JSONException;
@@ -73,9 +74,8 @@ public class GroupsInviteAdapter extends RecyclerView.Adapter<GroupsInviteAdapte
 
     private void inviteUser(int groupId, String invitedUser) {
         ApiCalls api = new ApiCalls();
-
-        SharedPreferences prefs = context.getApplicationContext().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-        String authToken = prefs.getString("authToken", "");
+        AuthUtil authUtil = new AuthUtil(context);
+        String authToken = authUtil.getAuthToken();
         MainNavigatorActivity main = (MainNavigatorActivity) context;
 
         try {

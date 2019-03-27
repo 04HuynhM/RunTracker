@@ -13,11 +13,12 @@ import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.runtracker.Adapters.UserRecyclerAdapter;
-import com.runtracker.Fragments.UserFragment;
 import com.runtracker.Fragments.MenuFragments.ProfileFragment;
+import com.runtracker.Fragments.UserFragment;
 import com.runtracker.Models.User;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
+import com.runtracker.Utilities.AuthUtil;
 import com.runtracker.Utilities.Constants;
 
 import java.io.IOException;
@@ -60,11 +61,8 @@ public class SingleGroupFragment extends Fragment {
 
         ConstraintLayout adminButton = v.findViewById(R.id.admin_row_button);
         adminButton.setOnClickListener(view -> {
-            SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
-            String auth = prefs.getString("authToken", "");
-
-            JWT jwt = new JWT(auth);
-            String username = jwt.getClaim("username").asString();
+            AuthUtil authUtil = new AuthUtil(getActivity());
+            String username = authUtil.getCurrentUser();
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             if (admin.getText().toString().equals(username)) {
                 ProfileFragment fragment = new ProfileFragment();
