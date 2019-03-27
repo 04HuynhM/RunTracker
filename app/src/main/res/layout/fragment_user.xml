@@ -63,17 +63,18 @@
                 tools:text="150" />
 
             <ImageView
-                android:id="@+id/edit_user_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/user_invite_group_button"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="0dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:src="@drawable/ic_edit_black_24dp"
-                android:tint="@android:color/white"
+                android:src="@drawable/ic_email_black_24dp"
+                android:tint="@color/colorAccent"
                 tools:ignore='contentDescription' />
 
             <TextView

@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -14,12 +16,14 @@ import okhttp3.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
+import com.runtracker.Fragments.Groups.GroupInviteSelectionFragment;
 import com.runtracker.Network.ApiCalls;
 import com.runtracker.R;
 import com.runtracker.Utilities.Constants;
@@ -42,6 +46,7 @@ public class UserFragment extends Fragment {
     private TextView weightGoal;
     private TextView averageDailySteps;
     private TextView dailyStepGoal;
+    private ImageView inviteButton;
 
     public UserFragment() {
         // Required empty public constructor
@@ -61,6 +66,7 @@ public class UserFragment extends Fragment {
         weightGoal = view.findViewById(R.id.user_weight_goal_value);
         dailyStepGoal = view.findViewById(R.id.user_step_goal_value);
         averageDailySteps = view.findViewById(R.id.user_average_steps_value);
+        inviteButton = view.findViewById(R.id.user_invite_group_button);
 
         String username;
         Bundle bundle = this.getArguments();
@@ -69,6 +75,10 @@ public class UserFragment extends Fragment {
         } else {
             username = "";
         }
+
+        inviteButton.setOnClickListener(view1 -> {
+            showGroupList(username);
+        });
 
         ApiCalls api = new ApiCalls();
         String url = Constants.BASE_URL + "user/" + username;
@@ -109,5 +119,16 @@ public class UserFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void showGroupList(String invitedUser) {
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack("run_tracker");
+        Bundle bundle = new Bundle();
+        bundle.putString("invitedUser", invitedUser);
+
+        DialogFragment dialogFragment = new GroupInviteSelectionFragment();
+        dialogFragment.setArguments(bundle);
+        dialogFragment.show(ft, "group invite list");
     }
 }
