@@ -29,7 +29,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for UserFragment, almost identical to Profile fragment
  */
 public class UserFragment extends Fragment {
 

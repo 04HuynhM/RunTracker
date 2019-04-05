@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
@@ -7,44 +7,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_circle_imageview"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/man"
+        app:civ_border_color="#000000"
+        app:civ_border_width="3dp"
+        app:civ_circle_background_color="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/user_header_image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@color/colorPrimaryDark"
+        tools:ignore='contentDescription' />
+
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/user_header_image"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/healthy_pic"
-            tools:ignore='contentDescription' />
-
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/user_circle_imageview"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="145dp"
-            android:clickable="true"
-            android:elevation="5dp"
-            android:focusable="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/man"
-            android:visibility="invisible"
-            app:civ_border_color="#000000"
-            app:civ_border_width="3dp"
-            app:civ_circle_background_color="#ffffff"
-            app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_header_image">
 
         <RelativeLayout
             android:id="@+id/user_relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/user_header_image"
             android:background="@android:color/darker_gray"
             android:elevation="4dp"
             android:paddingBottom="24dp">
@@ -66,11 +66,11 @@
                 android:id="@+id/user_invite_group_button"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="0dp"
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/ic_email_black_24dp"
@@ -267,4 +267,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

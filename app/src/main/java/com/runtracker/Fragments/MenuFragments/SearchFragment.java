@@ -1,6 +1,5 @@
 package com.runtracker.Fragments.MenuFragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +32,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for Search fragment in MAIN MENU
  */
 public class SearchFragment extends Fragment {
 
@@ -60,6 +59,7 @@ public class SearchFragment extends Fragment {
         groupList = v.findViewById(R.id.search_group_list);
         searchResults = v.findViewById(R.id.search_results_container);
 
+        // On click for search button (magnifying glass)
         searchButton.setOnClickListener(view -> {
 
             AuthUtil authUtil = new AuthUtil(getActivity());
@@ -79,6 +79,7 @@ public class SearchFragment extends Fragment {
         return v;
     }
 
+    // Api Call to search for users
     private void searchForUsers(String query) {
         String userUrl = Constants.BASE_URL + "user/" + query.trim();
 
@@ -100,6 +101,8 @@ public class SearchFragment extends Fragment {
         });
     }
 
+    // Api call to search for groups both by username (members) and id (group id)
+    // Search must be synchronous to avoid recyclerview population errors
     private void performSynchronousSearch(String query, String authToken) {
         String groupByIdUrl = Constants.BASE_URL + "group/" + query.trim();
         String groupByUsernameUrl = Constants.BASE_URL + "group/user/" + query.trim();
@@ -142,6 +145,7 @@ public class SearchFragment extends Fragment {
         populateGroupList(groupsByIdResponseString, groupsByUsernameResponseString);
     }
 
+    // Populate user recyclerview with data from searchForUsers method
     private void populateUserList(String json) {
         Gson gson = new Gson();
         User user = gson.fromJson(json, User.class);
@@ -155,6 +159,7 @@ public class SearchFragment extends Fragment {
         });
     }
 
+    // Populate groups recyclerview with data from performSynchronousSearch method
     private void populateGroupList(String groupsById, String groupsByUsername) {
         ArrayList<Group> groups = new ArrayList<>();
         Gson gson = new Gson();

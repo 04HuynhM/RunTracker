@@ -25,7 +25,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for group invitations fragment
  */
 public class MyGroupInvitesFragment extends Fragment {
 
@@ -53,6 +53,7 @@ public class MyGroupInvitesFragment extends Fragment {
         return v;
     }
 
+    // Api call to get "your" group invitations
     private void getGroupsFromInvites(String username, String auth) {
         ApiCalls api = new ApiCalls();
         String url = Constants.BASE_URL + "group/invites/" + username;
@@ -79,6 +80,7 @@ public class MyGroupInvitesFragment extends Fragment {
         });
     }
 
+    // Populate list of invitations using data from getGroupsFromInvites method
     private void populateInvitesList(String json) {
         Gson gson = new Gson();
         Group[] groups = gson.fromJson(json, Group[].class);

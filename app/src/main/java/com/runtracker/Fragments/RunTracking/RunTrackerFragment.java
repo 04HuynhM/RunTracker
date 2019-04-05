@@ -58,7 +58,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for Run tracker dialogFragment
  */
 public class RunTrackerFragment extends DialogFragment implements OnMapReadyCallback {
 
@@ -113,33 +113,10 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
 
         timeValue = v.findViewById(R.id.run_time_value);
         Button completeButton = v.findViewById(R.id.complete_run);
-        Button cancelButton = v.findViewById(R.id.cancel_run_button);
         locations = new ArrayList<>();
         Run run = startRun();
 
-        cancelButton.setOnClickListener(view -> {
-            HelperMethods helperMethods = new HelperMethods();
-
-            DialogInterface.OnClickListener onClickListener = (dialogInterface, choice) -> {
-                switch (choice) {
-                    case DialogInterface.BUTTON_POSITIVE :
-                        running = false;
-                        stopLocationUpdates();
-                        mapView.onPause();
-                        dialogInterface.dismiss();
-                        dismiss();
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        dialogInterface.cancel();
-                        break;
-                }
-            };
-
-            helperMethods.createYesNoAlert("Are you sure you want to cancel this run?",
-                                            context,
-                                            onClickListener);
-        });
-
+        // OnClick for complete run button
         completeButton.setOnClickListener(view -> {
             running = false;
             stopLocationUpdates();
@@ -149,6 +126,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
             uploadRun(run);
         });
 
+        // Location callback implementation for Location service to work properly
         locationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
@@ -167,6 +145,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         return v;
     }
 
+    // Initiate mapview methods
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -178,6 +157,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         startLocationUpdates();
     }
 
+    // Check for permissions and initiate mapview to GoogleMap
     @Override
     public void onMapReady(GoogleMap map) {
         googleMap = map;
@@ -205,6 +185,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         mapView.onPause();
     }
 
+    // onDestroy overrided to stop location service when fragment is destroyed
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -212,6 +193,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         mapView.onPause();
     }
 
+    // Set size of dialog fragment based on screen size
     private void setFragmentSize() {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         int dpi = displayMetrics.densityDpi;
@@ -228,6 +210,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         window.setLayout(width, height);
     }
 
+    // Set map location (blue dot) to your current/last known location
     private void setMapToCurrentLocation() {
         if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -244,6 +227,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         }
     }
 
+    // Start run and create run object that will eventually be submitted to API
     private Run startRun() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
         JWT jwt = new JWT(sharedPreferences.getString("authToken", ""));
@@ -254,6 +238,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         return new Run(username, timestamp);
     }
 
+    // Start location service that tracks location every 5 seconds
     private void startLocationUpdates() {
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setInterval(4000);
@@ -268,10 +253,12 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
         }
     }
 
+    // Stop location service
     private void stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
+    // Start run timer in new thread
     private void runTimer(){
         final Handler handler = new Handler();
         handler.post(new Runnable() {
@@ -291,6 +278,7 @@ public class RunTrackerFragment extends DialogFragment implements OnMapReadyCall
 
     }
 
+    // Api call to upload filled run object
     private void uploadRun(Run run) {
         JSONArray jsonLocationArray = new JSONArray();
         try {

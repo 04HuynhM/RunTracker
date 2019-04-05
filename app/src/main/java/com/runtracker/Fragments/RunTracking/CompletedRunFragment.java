@@ -1,7 +1,6 @@
 package com.runtracker.Fragments.RunTracking;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.location.Location;
@@ -69,6 +68,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
 
         Button deleteRunButton = v.findViewById(R.id.delete_run_button);
 
+        // Delete run onClickListener
         deleteRunButton.setOnClickListener(view -> {
             HelperMethods helperMethods = new HelperMethods();
             helperMethods
@@ -100,6 +100,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
         return v;
     }
 
+    // Api call to delete run
     private void deleteRun(String runId) {
         ApiCalls api = new ApiCalls();
         String url = Constants.BASE_URL + "run/" + runId;
@@ -134,6 +135,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
         });
     }
 
+    // Convert timeInSeconds to usable format
     private String getTime(int seconds) {
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
@@ -141,6 +143,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
         return String.format("%d:%02d:%02d", hours, minutes, sec);
     }
 
+    // Default method
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -150,6 +153,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
         mapView.getMapAsync(this);
     }
 
+    // Calculate distance based on latLng data
     private float getDistance(ArrayList<LatLng> latLngs) {
         float totalDistance = 0;
 
@@ -168,6 +172,7 @@ public class CompletedRunFragment extends Fragment implements OnMapReadyCallback
         return totalDistance;
     }
 
+    // Overrided method that displays the map with polylines
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;

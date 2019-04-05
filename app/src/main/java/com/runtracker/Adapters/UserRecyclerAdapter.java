@@ -19,6 +19,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Adapter for User List RecyclerView in search page
+ * Uses ViewHolder pattern using the custom_item_group_member layout
+ */
+
 public class UserRecyclerAdapter extends RecyclerView.Adapter<UserRecyclerAdapter.ViewHolder> {
 
     private User[] users;

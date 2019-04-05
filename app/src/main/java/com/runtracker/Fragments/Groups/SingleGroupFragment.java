@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.auth0.android.jwt.JWT;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.runtracker.Adapters.UserRecyclerAdapter;
@@ -32,6 +31,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+
+/**
+ * Controller for group fragment (showing one group and it's members)
+ */
 
 public class SingleGroupFragment extends Fragment {
 
@@ -60,6 +63,10 @@ public class SingleGroupFragment extends Fragment {
         admin.setText(bundle.getString("admin"));
 
         ConstraintLayout adminButton = v.findViewById(R.id.admin_row_button);
+
+        // OnClick for admin field on the group page, checks if you are the admin of the group and if
+        // you are, then it navigates you to the profileFragment instead of regular userFragment since there
+        // is different functionality.
         adminButton.setOnClickListener(view -> {
             AuthUtil authUtil = new AuthUtil(getActivity());
             String username = authUtil.getCurrentUser();
@@ -84,6 +91,7 @@ public class SingleGroupFragment extends Fragment {
         return v;
     }
 
+    // Api call to get members data
     private void callApiForMembers() {
         SharedPreferences prefs = getActivity().getSharedPreferences("preferences", Context.MODE_PRIVATE);
         String authToken = prefs.getString("authToken", "");
@@ -108,6 +116,7 @@ public class SingleGroupFragment extends Fragment {
         });
     }
 
+    // Populate members recyclerview with data received from callApiForMembers method
     private void populateRecyclerView(String body) {
         Gson gson = new Gson();
         User[] membersWithAdmin = gson.fromJson(body, User[].class);

@@ -9,6 +9,10 @@ import com.auth0.android.jwt.JWT;
 
 import java.util.Map;
 
+/**
+ * Helper methods for creating dialogs easily
+ */
+
 public class HelperMethods {
 
     public void createOkayAlert(String message, Context context) {

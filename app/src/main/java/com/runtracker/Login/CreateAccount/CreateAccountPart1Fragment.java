@@ -13,7 +13,7 @@ import com.runtracker.Utilities.HelperMethods;
 import androidx.fragment.app.Fragment;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for first screen of create account flow
  */
 public class CreateAccountPart1Fragment extends Fragment {
 
@@ -45,6 +45,7 @@ public class CreateAccountPart1Fragment extends Fragment {
         return view;
     }
 
+    // Put all data from fields into a bundle to pass to second screen of create account flow
     private void performContinue() {
         if (!validateInputs()) {
             return;
@@ -66,6 +67,7 @@ public class CreateAccountPart1Fragment extends Fragment {
                 .commit();
     }
 
+    // Check that all fields have been filled, inflate alertDialog if empty fields
     private boolean validateInputs() {
         HelperMethods help = new HelperMethods();
 
