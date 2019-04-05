@@ -1,7 +1,6 @@
 package com.runtracker.Adapters;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
+
+/**
+ * Adapter for Group Invites RecyclerView
+ * Uses ViewHolder pattern using the custom_item_group_member layout
+ */
 
 public class GroupsInviteAdapter extends RecyclerView.Adapter<GroupsInviteAdapter.ViewHolder> {
 

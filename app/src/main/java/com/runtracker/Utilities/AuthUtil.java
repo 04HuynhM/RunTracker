@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 
 import com.auth0.android.jwt.JWT;
 
+/**
+ * Utility class to access authentication token and current user easily
+ */
 public class AuthUtil {
 
     private SharedPreferences prefs;

@@ -19,6 +19,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Adapter for Groups list RecyclerView
+ * Uses ViewHolder pattern using the custom_item_group_member layout
+ */
+
 public class GroupsRecyclerAdapter extends RecyclerView.Adapter<GroupsRecyclerAdapter.ViewHolder> {
 
     private Group[] groups;

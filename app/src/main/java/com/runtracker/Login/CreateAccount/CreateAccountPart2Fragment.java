@@ -68,6 +68,7 @@ public class CreateAccountPart2Fragment extends Fragment {
         return view;
     }
 
+    // Api Call to create a new user
     private void performAccountCreation() {
         String username;
         String name;
@@ -148,6 +149,7 @@ public class CreateAccountPart2Fragment extends Fragment {
         });
     }
 
+    // Once user has been created, they should be logged in automatically
     private void loginAndGo(String usernameOrEmail, String password) throws JSONException {
         JSONObject loginDetails = new JSONObject();
         loginDetails.put("usernameOrEmail", usernameOrEmail);

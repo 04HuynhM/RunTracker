@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for run fragment in the MAIN MENU
  */
 public class RunsMenuFragment extends Fragment {
 
@@ -43,6 +43,7 @@ public class RunsMenuFragment extends Fragment {
 
         startRunButton = v.findViewById(R.id.start_run_button);
 
+        // On click to start a run
         startRunButton.setOnClickListener(view -> {
             showRunTracker();
         });
@@ -50,6 +51,7 @@ public class RunsMenuFragment extends Fragment {
         return v;
     }
 
+    // Inflates run tracker dialog
     private void showRunTracker() {
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.addToBackStack("run_tracker");

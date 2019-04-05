@@ -10,6 +10,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
+/**
+Utility class to simplify API calls
+ */
+
 public class ApiCalls {
     private static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     private static final MediaType PNG = MediaType.get("image/png");
@@ -93,7 +97,7 @@ public class ApiCalls {
                     .addFormDataPart("image", image.getName(),
                             RequestBody.create(PNG, image))
                     .build();
-        } else if (image.getName().contains(".jpg")) {
+        } else if (image.getName().contains(".jpg") || image.getName().contains(".jpeg")) {
             requestBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("image", image.getName(),

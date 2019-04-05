@@ -19,8 +19,13 @@ import com.runtracker.Utilities.HelperMethods;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+/**
+ * Main controller for main menu
+ */
+
 public class MainNavigatorActivity extends AppCompatActivity {
 
+    // Configure bottom navigation view selection
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
         = item -> {
             switch (item.getItemId()) {
@@ -40,6 +45,7 @@ public class MainNavigatorActivity extends AppCompatActivity {
             return false;
         };
 
+    // Load selected fragment in bottom navigator
     private void loadFragment(Fragment fragment) {
         if (fragment!=null) {
             getSupportFragmentManager()
@@ -60,6 +66,7 @@ public class MainNavigatorActivity extends AppCompatActivity {
         loadFragment(new RunsMenuFragment());
     }
 
+    // Create options menu (top right corner) and display options, i.e. log out
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -67,6 +74,7 @@ public class MainNavigatorActivity extends AppCompatActivity {
         return true;
     }
 
+    // On click for options menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

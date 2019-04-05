@@ -1,8 +1,6 @@
 package com.runtracker.Fragments.Groups;
 
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -15,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.auth0.android.jwt.JWT;
 import com.google.gson.Gson;
 import com.runtracker.Adapters.GroupsInviteAdapter;
 import com.runtracker.Models.Group;
@@ -27,7 +24,6 @@ import com.runtracker.Utilities.Constants;
 import java.io.IOException;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
@@ -35,7 +31,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * This class is a custom dialog fragment that shows when a user clicks the "invite" button
+ * on a user's profile page.
  */
 public class GroupInviteSelectionFragment extends DialogFragment {
 
@@ -53,6 +50,8 @@ public class GroupInviteSelectionFragment extends DialogFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_group_invite_selection, container, false);
 
+
+        //Initialize views and variables
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().setCanceledOnTouchOutside(false);
 
@@ -60,6 +59,7 @@ public class GroupInviteSelectionFragment extends DialogFragment {
         heading = v.findViewById(R.id.invite_group_list_heading);
         cancelButton = v.findViewById(R.id.cancel_invite_button);
 
+        //Dismiss this fragment when cancel button clicked
         cancelButton.setOnClickListener(view -> {
             dismiss();
         });
@@ -77,6 +77,7 @@ public class GroupInviteSelectionFragment extends DialogFragment {
         setFragmentSize();
     }
 
+    // Sets the fragment size based on the screen size
     private void setFragmentSize() {
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         int dpi = displayMetrics.densityDpi;
@@ -93,6 +94,7 @@ public class GroupInviteSelectionFragment extends DialogFragment {
         window.setLayout(width, height);
     }
 
+    // Get group information via api call
     private void callApiForGroups(String invitedUser) {
         ApiCalls api = new ApiCalls();
         AuthUtil authUtil = new AuthUtil(getActivity());
@@ -127,6 +129,7 @@ public class GroupInviteSelectionFragment extends DialogFragment {
         });
     }
 
+    // Populate groups with data received from callApiForGroups method
     private void populateGroups(String jsonBody, String invitedUser) {
         if (!jsonBody.equals("")) {
             Gson gson = new Gson();

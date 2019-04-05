@@ -1,7 +1,6 @@
 package com.runtracker.Fragments.MenuFragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +36,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+/**
+ * Controller for Groups fragment on the MAIN MENU
+ */
+
 public class GroupsFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -54,6 +57,7 @@ public class GroupsFragment extends Fragment {
         FloatingActionButton fab = v.findViewById(R.id.create_group_fab);
         ConstraintLayout groupInvitationsButton = v.findViewById(R.id.my_group_invitations_container);
 
+        // On click for my group invitations button
         groupInvitationsButton.setOnClickListener(view -> {
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             MyGroupInvitesFragment fragment = new MyGroupInvitesFragment();
@@ -61,7 +65,7 @@ public class GroupsFragment extends Fragment {
             ft.commit();
         });
 
-
+        // OnClick for FAB to create a group
         fab.setOnClickListener(view -> {
             createGroupDialog();
         });
@@ -70,6 +74,7 @@ public class GroupsFragment extends Fragment {
         return v;
     }
 
+    // Api call to get group data
     private void callApiForGroups() {
         ApiCalls api = new ApiCalls();
         AuthUtil authUtil = new AuthUtil(getActivity());
@@ -107,6 +112,7 @@ public class GroupsFragment extends Fragment {
         });
     }
 
+    // Populate groups recyclerview with data received from callApiForGroups method
     private void populateGroups(String jsonBody) {
         if (!jsonBody.equals("")) {
             Gson gson = new Gson();
@@ -121,6 +127,7 @@ public class GroupsFragment extends Fragment {
         }
     }
 
+    // Creates a dialog for creating a group (dialog with textView) when FAB is clicked
     private void createGroupDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Create a Group");
@@ -155,6 +162,7 @@ public class GroupsFragment extends Fragment {
         alertDialog.show();
     }
 
+    // Api call to create group
     private void createGroup(String groupName) throws JSONException{
         ApiCalls api = new ApiCalls();
 
@@ -199,6 +207,7 @@ public class GroupsFragment extends Fragment {
         });
     }
 
+    // Helper method to convert DP to PX for screen size calculation
     private int dpToPx(int dp)
     {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);

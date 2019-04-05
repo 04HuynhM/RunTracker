@@ -1,13 +1,11 @@
 package com.runtracker.Fragments.RunTracking;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.auth0.android.jwt.JWT;
 import com.google.gson.Gson;
 import com.runtracker.Adapters.RunRecyclerAdapter;
 import com.runtracker.Models.Run;
@@ -26,7 +24,7 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Controller for My Runs fragment
  */
 public class MyRunsFragment extends Fragment {
 
@@ -47,6 +45,7 @@ public class MyRunsFragment extends Fragment {
         return v;
     }
 
+    // Api call to get your run data
     private void getMyRuns() {
         AuthUtil authUtil = new AuthUtil(getActivity());
         String authToken = authUtil.getAuthToken();
@@ -71,6 +70,7 @@ public class MyRunsFragment extends Fragment {
         });
     }
 
+    // Populate run list recyclerview
     private void populateList(String jsonRuns) {
         Gson gson = new Gson();
         Run[] runs = gson.fromJson(jsonRuns, Run[].class);

@@ -28,6 +28,11 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+/**
+ * Adapter for My Group Invites List RecyclerView
+ * Uses ViewHolder pattern using the custom_item_group_invite layout
+ */
+
 public class MyInvitesListAdapter extends RecyclerView.Adapter<MyInvitesListAdapter.ViewHolder> {
 
     private Group[] groups;

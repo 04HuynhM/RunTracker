@@ -21,6 +21,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Adapter for My Runs List RecyclerView
+ * Uses ViewHolder pattern using the custom_item_run_row layout
+ */
+
 public class RunRecyclerAdapter extends RecyclerView.Adapter<RunRecyclerAdapter.ViewHolder> {
 
     private Run[] runs;

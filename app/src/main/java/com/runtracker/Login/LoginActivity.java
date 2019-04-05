@@ -78,6 +78,9 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Api call to login user using details submitted in fields
+    // Adds settings to sharedpreferences including username and password if remember me is ticked
+    // Authentication token also added to shared preferences
     private void performLogin() throws JSONException {
         ApiCalls api = new ApiCalls();
         String usernameOrEmail = email.getText().toString();
